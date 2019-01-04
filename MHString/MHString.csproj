@@ -8,10 +8,14 @@
     <Company>OC Software Solutions</Company>
     <Description>String Utilities and Extensions</Description>
     <PackageTags>OCSS Utility String</PackageTags>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Copyright>© 2019, OC Software Solutions</Copyright>
     <PackageLicenseUrl></PackageLicenseUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/mzh99/MHString</PackageProjectUrl>
+    <Version>1.0.1</Version>
+    <RepositoryUrl>https://github.com/mzh99/MHString.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
