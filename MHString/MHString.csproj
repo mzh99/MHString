@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
+    <RootNamespace>OCSS.StringUtil</RootNamespace>
+    <PackageId>OCSS.StringUtil.MHString</PackageId>
+    <Authors>MH</Authors>
+    <Company>OC Software Solutions</Company>
+    <Description>String Utilities and Extensions</Description>
+    <PackageTags>OCSS Utility String</PackageTags>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <Copyright>© 2019, OC Software Solutions</Copyright>
+    <PackageLicenseUrl></PackageLicenseUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Update="License.txt">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
