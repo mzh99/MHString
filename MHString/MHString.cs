@@ -71,6 +71,10 @@ namespace OCSS.StringUtil {
          return MHString.Unquote(str, quoteCharSet);
       }
 
+      public static string ParseIPv4(this string ip) {
+         return MHString.ParseIPv4(ip);
+      }
+
    }
 
    /// <summary>String Utility functions</summary>
@@ -481,6 +485,48 @@ namespace OCSS.StringUtil {
          }
 
          return str;
+      }
+
+      /// <summary>Parse an IPv4 address</summary>
+      /// <param name="ip">IPv4 address in string form</param>
+      /// <returns>A "normalized" IPv4 Address with whitespace and any leading zeros removed.</returns>
+      /// <remarks>
+      /// Throws a FormatException if the IP Address is an invalid format or number (0-255).
+      ///  To avoid exceptions, you can use TryParseIPv4 instead or trap it yourself.
+      /// </remarks>
+      public static string ParseIPv4(string ip) {
+         if (string.IsNullOrWhiteSpace(ip))
+            throw new FormatException("IPv4 Address is null or empty.");
+         var parts = ip.Split(new char[] { '.' }, StringSplitOptions.None);
+         if (parts.Length != 4)
+            throw new FormatException("IPv4 Address does not contain 4 segments separated by a dot.");
+         for (int z = 0; z < 4; z++) {
+            var num = 0;
+            // using overridden method so we can say we only want to consider integral digits
+            if (int.TryParse(parts[z].Trim(), NumberStyles.None, CultureInfo.InvariantCulture, out num) == false)
+               throw new FormatException($"Segment {z + 1} of IPv4 Address ({parts[z]}) is not strictly numeric (digits only).");
+            if (num < 0 || num > 255)
+               throw new FormatException($"Segment {z + 1} of IPv4 Address ({parts[z]}) is not between 0 and 255.");
+            parts[z] = num.ToString();
+         }
+         // success starts here
+         return string.Join(".", parts);   // normalize segments into valid numbers (in case of whitespace or leading zeros)
+      }
+
+      /// <summary>Parse an IPv4 address</summary>
+      /// <param name="ip">IPv4 address in string form</param>
+      /// <param name="normalizedIp">Filled with a "normalized" IPv4 Address (whitespace and any leading zeros removed).</param>
+      /// <returns>True if a valid IPv4 Address. Otherwise, False.</returns>
+      /// <remarks>FormatException exceptions are trapped and not thrown. False will be returned instead. See ParseIPv4 for details on validations.</remarks>
+      public static bool TryParseIPv4(string ip, out string normalizedIp) {
+         normalizedIp = string.Empty;
+         try {
+            normalizedIp = ParseIPv4(ip);
+            return true;
+         }
+         catch (FormatException) {
+            return false;
+         }
       }
 
       /// <summary>Semi-intelligent comma-separated splitter for CSV data</summary>
