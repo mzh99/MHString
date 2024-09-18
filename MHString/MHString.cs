@@ -431,9 +431,8 @@ namespace OCSS.StringUtil {
          if (parts.Length != 4)
             throw new FormatException("IPv4 Address does not contain 4 segments separated by a dot.");
          for (int z = 0; z < 4; z++) {
-            var num = 0;
             // using overridden method so we can say we only want to consider integral digits
-            if (int.TryParse(parts[z].Trim(), NumberStyles.None, CultureInfo.InvariantCulture, out num) == false)
+            if (int.TryParse(parts[z].Trim(), NumberStyles.None, CultureInfo.InvariantCulture, out int num) == false)
                throw new FormatException($"Segment {z + 1} of IPv4 Address ({parts[z]}) is not strictly numeric (digits only).");
             if (num < 0 || num > 255)
                throw new FormatException($"Segment {z + 1} of IPv4 Address ({parts[z]}) is not between 0 and 255.");
