@@ -25,7 +25,7 @@ namespace OCSS.StringUtil {
             }
          }
          else {
-            List<String> fieldlist = new List<string>();
+            List<string> fieldlist = new List<string>();
             bool inEnclosure = false;
             int startPos = 0;
             int p = 0;
