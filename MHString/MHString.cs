@@ -31,7 +31,7 @@ namespace OCSS.StringUtil {
          int delimCnt, charCnt, strNdx, startSegNdx;
 
          if ((numSegs < 1) || (segNum < 1) || (str.Length == 0))
-            return String.Empty;
+            return string.Empty;
 
          segNum--;
          strNdx = 0;
@@ -114,7 +114,7 @@ namespace OCSS.StringUtil {
       /// <param name="str">string to process</param>
       /// <param name="maxLength">one-based position to chop string</param>
       /// <returns>truncated string</returns>
-      /// <remarks>This avoids "Out of Range" exceptions when using String.Substring(0,Maxlength) when string length is less than Maxlength</remarks>
+      /// <remarks>This avoids "Out of Range" exceptions when using string.Substring(0, Maxlength) when string length is less than Maxlength</remarks>
       public static string Truncate(string str, int maxLength) {
          return str.Substring(0, Math.Min(maxLength, str.Length));
       }
@@ -186,7 +186,7 @@ namespace OCSS.StringUtil {
          if (teleDigits.Length == 4)
             teleDigits = LEFT_PARENS + areaCode + RIGHT_PARENS + " " + prefix + DASH + teleDigits;
          // add extension back in if needed
-         if (ext != String.Empty)
+         if (ext != string.Empty)
             teleDigits = teleDigits + " " + HASHMARK + ext;
 
          return teleDigits;
@@ -260,7 +260,7 @@ namespace OCSS.StringUtil {
       /// <remarks>No exceptions if startPos > string.length or startPos + cnt > string.length</remarks>
       public static string SubstringSafe(string str, int startPos, int cnt) {
          if ((startPos >= str.Length) || (startPos < 0))
-            return String.Empty;
+            return string.Empty;
          if (startPos + cnt <= (str.Length))
             return str.Substring(startPos, cnt);
          return str.Substring(startPos, str.Length - startPos);
