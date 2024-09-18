@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 namespace OCSS.StringUtil {
 
    /// <summary>String Utility functions</summary>
+   /// <remarks>This class is partial for organizational and size reasons as it's grown</remarks>
    public static partial class MHString {
 
       public static readonly string DoubleQuoteEN = "\"";
