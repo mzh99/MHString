@@ -1,4 +1,5 @@
 ﻿namespace OCSS.StringUtil {
+
    public class CSVParseOpts {
       public char FieldDelimiter { get; set; }
       public char EnclosureDelimiter { get; set; }
