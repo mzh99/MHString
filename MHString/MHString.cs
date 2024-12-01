@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -456,6 +457,56 @@ namespace OCSS.StringUtil {
          catch (FormatException) {
             return false;
          }
+      }
+
+      public static string InsertCharEvery(string str, int everyNth, char charToInsert, bool includeTrailing = false) {
+         if (everyNth <= 0)
+            throw new ArgumentException("Every nth character must be one or more", nameof(everyNth));
+         if (string.IsNullOrEmpty(str))
+            return string.Empty;
+         if (str.Length < everyNth) 
+            return str;
+         List<char> charlist = str.ToList();
+         int ndx = 0;   // track index within string
+         int cnt = 0;   // track counter for Nth char
+         while (ndx++ < charlist.Count) {
+            if (++cnt >= everyNth) {
+               charlist.Insert(ndx++, charToInsert);
+               cnt = 0;    // reset
+            }
+         }
+         // if the last character is a trailing char and no trailer, remove it
+         if (cnt == 0 && includeTrailing == false)
+            charlist.RemoveAt(charlist.Count - 1);
+         return string.Concat(charlist);
+      }
+
+      /// <summary>Center-justify text</summary>
+      /// <param name="val"></param>
+      /// <param name="outputWidth">width to center in</param>
+      /// <returns>Centered string</returns>
+      /// <remarks>
+      ///   Edge cases:
+      ///      - Output width <= 0, an empty string is returned
+      ///      - val = null, an empty string is returned
+      ///      - length of passed string >= output width, substring is returned
+      ///   Other note:
+      ///      - when (outputWidth - val.Length) is odd, the extra space padding will be on the right
+      /// </remarks>
+      public static string CenterJustify(string val, int outputWidth, char paddingChar = ' ') {
+         if (outputWidth <= 0 || val == null) 
+            return string.Empty;
+         if (val == string.Empty)
+            return new string(paddingChar, outputWidth);
+         if (val.Length == outputWidth)
+            return val;
+         if (val.Length > outputWidth)
+            return val.Substring(0, outputWidth);
+         int leftPadding = (outputWidth - val.Length) / 2;
+         // create left side with padding and data
+         string leftSideWithData = val.PadLeft(leftPadding + val.Length, paddingChar);
+         // add in trailing spaces
+         return leftSideWithData + new string(paddingChar, outputWidth - leftSideWithData.Length);
       }
 
    }

@@ -68,6 +68,14 @@
          return MHString.ParseIPv4(ip);
       }
 
+      public static string InsertCharEvery(this string str, int everyNth, char charToInsert, bool includeTrailing = false) {
+         return MHString.InsertCharEvery(str, everyNth, charToInsert, includeTrailing);
+      }
+
+      public static string CenterJustify(this string val, int outputWidth, char paddingChar = ' ') {
+         return MHString.CenterJustify(val, outputWidth, paddingChar);
+      }
+
    }
 
 }

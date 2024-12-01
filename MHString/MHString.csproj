@@ -13,7 +13,7 @@
     <PackageLicenseUrl></PackageLicenseUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/mzh99/MHString</PackageProjectUrl>
-    <Version>1.1</Version>
+    <Version>1.2</Version>
     <RepositoryUrl>https://github.com/mzh99/MHString.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <Title>OCSS String Utilities</Title>
